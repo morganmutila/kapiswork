@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('wage', 8, 2)->nullable();
             $table->string('contact');
             $table->boolean('is_active')->default(true);
-            $table->category_id();
+            $table->foreignId('category_id');
             $table->timestamps();
         });
     }
