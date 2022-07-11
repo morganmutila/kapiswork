@@ -12,6 +12,8 @@ class WorkType extends Model
 
     protected $guarded = [];
 
+    public $timestamps = false;
+
     public function listing(){
         return $this->belongsTo(Listing::class);
     }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->index();
+            //$table->foreignId('category_id');
             $table->string('title');
             $table->string('slug');
             $table->string('business_name')->nullable();
@@ -24,7 +25,9 @@ return new class extends Migration
             $table->decimal('wage', 8, 2)->nullable();
             $table->string('contact');
             $table->boolean('is_active')->default(true);
-            $table->foreignId('category_id');
+            $table->boolean('urgent')->default(false);
+            $table->integer('number_of_workers')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
