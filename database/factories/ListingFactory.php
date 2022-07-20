@@ -26,12 +26,12 @@ class ListingFactory extends Factory
         }
         return [
             'title' => $title,
-            'user_id' => rand(1,10),
+            'work_type_id' => rand(1,5),
             'slug' => Str::slug($title) . '-'.rand(1111,9999),
             'business_name' => $this->faker->company,
             'description' => $description,
             'location' => $this->faker->city,
-            'wage' => rand(0, 10000),
+            'wage' => rand(0, 2500),
             'contact' => $this->faker->phoneNumber,
             'is_active' => true,
             'urgent' => (rand(1, 9) > 4),

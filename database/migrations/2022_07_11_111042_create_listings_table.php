@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->index();
-            //$table->foreignId('category_id');
+            $table->foreignId('work_type_id');
             $table->string('title');
             $table->string('slug');
             $table->string('business_name')->nullable();
             $table->text('description');
             $table->string('location');
-            $table->decimal('wage', 8, 2)->nullable();
+            $table->integer('wage')->nullable();
             $table->string('contact');
             $table->boolean('is_active')->default(true);
             $table->boolean('urgent')->default(false);

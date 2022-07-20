@@ -11,13 +11,16 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+        <div class="{{ request()->routeIs('home') ? 'mb-[4rem]' : '' }}">
+
+            @includeUnless(request()->routeIs(['signup', 'login', 'password.request']), 'layouts.navigation')
 
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
+            @includeUnless(request()->routeIs(['home', 'signup', 'login']), 'layouts.footer')
+            @include('layouts.mobile-menu')
         </div>
     </body>
 </html>
