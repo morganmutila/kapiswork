@@ -24,11 +24,11 @@ class DatabaseSeeder extends Seeder
         //\App\Models\Listing::factory(10)->create();
 
         $type = [
-            1 => 'fulltime',
-            2 => 'parttime',
-            3 => 'temporaly',
+            1 => 'full-time',
+            2 => 'part-time',
+            3 => 'temporary',
             4 => 'contract',
-            5 => 'intenship'
+            5 => 'internship'
         ];
 
         WorkType::create([

@@ -11,7 +11,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: '#F7931A',
+                primary: '#f50',
             },
             fontFamily: {
                 sans: ['Helvetica', ...defaultTheme.fontFamily.sans],

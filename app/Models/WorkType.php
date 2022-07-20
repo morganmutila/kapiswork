@@ -15,6 +15,6 @@ class WorkType extends Model
     public $timestamps = false;
 
     public function listing(){
-        return $this->belongsTo(Listing::class);
+        return $this->hasOne(Listing::class);
     }
 }

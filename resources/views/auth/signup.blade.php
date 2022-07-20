@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('signup') }}">
             @csrf
 
             <!-- Name -->
@@ -43,14 +43,14 @@
                                 autocomplete="new-password" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
+            <div class="flex items-center justify-center flex-col mt-4">
+                <x-button class="mb-6 capitalize">
+                    Sign Up
                 </x-button>
+
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                    Already registered?
+                </a>
             </div>
         </form>
     </x-auth-card>

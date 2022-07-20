@@ -1,6 +1,6 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 relative">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto px-4 lg:py-[.4rem]">
         <div class="flex justify-between h-16 items-center">
             <div class="flex">
                 <!-- Logo -->
@@ -11,21 +11,14 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/how-it-works">
-                        How it works
-                    </x-nav-link>
-                </div>
-
                 <div class="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex">
                     <x-nav-link :href="route('dashboard')">
-                        Find piecework
+                        Find Piecework
                     </x-nav-link>
                 </div>
             </div>
 
             <div class="flex space-x-6 items-center">
-
                 @auth
                     <!-- Settings Dropdown -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -46,11 +39,10 @@
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-
                                     <x-dropdown-link :href="route('logout')"
                                             onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
-                                        {{ __('Log Out') }}
+                                            this.closest('form').submit();">
+                                            Log Out
                                     </x-dropdown-link>
                                 </form>
                             </x-slot>
@@ -58,11 +50,11 @@
                     </div>
 
                     <!-- Hamburger -->
-                    <div class="-mr-2 flex items-center sm:hidden">
-                        <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    <div class="flex items-center sm:hidden">
+                        <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                                <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                         </button>
                     </div>
@@ -74,14 +66,14 @@
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px  sm:flex">
-                        <x-nav-link :href="route('register')">
+                        <x-nav-link :href="route('signup')">
                             Sign Up
                         </x-nav-link>
                     </div>
                 @endguest
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <a href="/post-work" class="bg-black my-3 text-sm font-bold text-white px-4 py-2 hover:bg-gray-700">
-                        Post piecework
+                    <a href="/new" class="my-3 text-sm rounded font-bold bg-primary text-white px-4 py-3 hover:bg-slate-900">
+                        Post Piecework
                     </a>
                 </div>
             </div>
@@ -89,7 +81,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'flex': open, 'hidden': ! open}" class="hidden sm:hidden">
         @auth
         <!-- Responsive Settings Options -->
             <div class="pt-4 pb-1 border-gray-200">
@@ -100,7 +92,7 @@
 
                 <div class="pt-2 pb-3 space-y-1">
                     <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                       Dashboard
                     </x-responsive-nav-link>
                 </div>
 
@@ -108,16 +100,14 @@
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-
                         <x-responsive-nav-link :href="route('logout')"
                                 onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                                this.closest('form').submit();">
+                                Log Out
                         </x-responsive-nav-link>
                     </form>
                 </div>
             </div>
-
         @endauth
     </div>
 </nav>

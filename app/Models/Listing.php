@@ -8,6 +8,7 @@ use App\Models\Click;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\WorkType;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,6 +18,17 @@ class Listing extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'urgent' => true,
+        'number_of_workers' => 'integer',
+        'title'         => 'string',
+        'slug'          => 'string',
+        'location'      => 'string',
+        'description'   => 'string',
+        'wage'          => 'integer',
+        'contact'       => 'string',
+    ];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -38,7 +50,17 @@ class Listing extends Model
         return $this->BelongsToMany(Tag::class);
     }
 
-    public function worktype(){
-        return $this->hasOne(WorkType::class);
+    public function work_type(){
+        return $this->belongsTo(WorkType::class);
+    }
+
+    // Custom functions
+
+    public function brief(int $words=90):string{
+        return Str::limit($this->attributes['description'], $words);
+    }
+
+    public function getWageAttribute(){
+        return Str::of(number_format($this->attributes['wage']))->prepend('K');
     }
 }
